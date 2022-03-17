@@ -1,0 +1,369 @@
+{% extends 'base.html' %} {% load static %} {% block nav %}
+<li class="nav-item">
+    <a class="nav-link text-warning" href="{% url 'index' %}">Home</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="#about">About Us</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="#services">Services</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="{% url 'blog' %}">Blog</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="{% url 'contact' %}">Login</a>
+</li>
+{% endblock nav %} {% block body %}
+<main>
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <svg
+                    class="bd-placeholder-img"
+                    width="100%"
+                    height="100%"
+                    xmlns="http://www.w3.org/2000/svg"
+                    preserveAspectRatio="xMidYMid slice"
+                    role="img"
+                    focusable="false"
+                >
+                    <rect width="100%" height="100%" fill="#777" />
+                </svg>
+                <img src="{%static 'img/img1.jpg'%}" alt="" />
+
+                <div class="container">
+                    <div
+                        class="carousel-caption text-left"
+                        style="
+                            position: absolute;
+                            bottom: 20px;
+                            right: 20px;
+                            background-color: rgba(0, 0, 0, 0.514);
+                            color: white;
+                            border-radius: 4rem;
+                            padding-left: 20px;
+                            padding-right: 20px;
+                        "
+                    >
+                        <h1 class="text-warning">Welcome to Ectopuz Tech.</h1>
+                        <p>
+                            The home of Tech, We offer movies and series on our
+                            telegram channel . Click below to join.
+                        </p>
+                        <p>
+                            <a
+                                class="btn btn-lg btn-primary btn-outline-warning"
+                                href="#"
+                                role="button"
+                                >Join on Telegram</a
+                            >
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <svg
+                    class="bd-placeholder-img"
+                    width="100%"
+                    height="100%"
+                    xmlns="http://www.w3.org/2000/svg"
+                    preserveAspectRatio="xMidYMid slice"
+                    role="img"
+                    focusable="false"
+                >
+                    <rect width="100%" height="100%" fill="#777" />
+                </svg>
+                <img src="{%static 'img/img12.jpg'%}" alt="" />
+                <div class="container">
+                    <div
+                        class="carousel-caption"
+                        style="
+                            position: absolute;
+                            bottom: 20px;
+                            right: 20px;
+                            background-color: rgba(0, 0, 0, 0.514);
+                            color: white;
+                            border-radius: 4rem;
+                            padding-left: 20px;
+                            padding-right: 20px;
+                        "
+                    >
+                        <h1>Join our Blog.</h1>
+                        <p>
+                            Welcome to our blog, We hope you will enjoy your
+                            visit. Click below to proceed
+                        </p>
+                        <p>
+                            <a
+                                class="btn btn-lg btn-success"
+                                href="#"
+                                role="button"
+                                >View Blog</a
+                            >
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <svg
+                    class="bd-placeholder-img"
+                    width="100%"
+                    height="100%"
+                    xmlns="http://www.w3.org/2000/svg"
+                    preserveAspectRatio="xMidYMid slice"
+                    role="img"
+                    focusable="false"
+                >
+                    <rect width="100%" height="100%" fill="#777" />
+                </svg>
+                <img src="{%static 'img/img7.jpg'%}" alt="" />
+                <div class="container">
+                    <div
+                        class="carousel-caption text-right"
+                        style="
+                            position: absolute;
+                            bottom: 20px;
+                            right: 20px;
+                            background-color: rgba(0, 0, 0, 0.514);
+                            color: white;
+                            border-radius: 4rem;
+                            padding-left: 20px;
+                            padding-right: 20px;
+                        "
+                    >
+                        <h1 class="text-danger">Get Yourself a Website .</h1>
+                        <p>
+                            We offer website design,development and deployment
+                            to major hosting servers. Click below to hire me for
+                            a web development gig.
+                        </p>
+                        <p>
+                            <a
+                                class="btn btn-lg btn-primary btn-outline-danger"
+                                href="#"
+                                role="button"
+                                >Hire Me</a
+                            >
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a
+            class="carousel-control-prev"
+            href="#myCarousel"
+            role="button"
+            data-slide="prev"
+        >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a
+            class="carousel-control-next"
+            href="#myCarousel"
+            role="button"
+            data-slide="next"
+        >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+
+    <!-- Marketing messaging and featurettes
+================================================== -->
+    <!-- Wrap the rest of the page in another container to center all the content. -->
+
+    <div class="container marketing" id="about">
+        <!-- Three columns of text below the carousel -->
+        <h1 class="text-success">
+            Meet the Team
+            <hr class="bg-success" />
+        </h1>
+        <br />
+        <div class="row">
+            {% for member in members %}
+            <div class="col-lg-4">
+                <img
+                    src="{{member.pic.url}}"
+                    class="bd-placeholder-img rounded-circle"
+                    width="140"
+                    height="140"
+                    preserveAspectRatio="xMidYMid slice"
+                    role="img"
+                    focusable="false"
+                    alt=""
+                />
+
+                <h2 style="font-variant: small-caps">{{member.name}}</h2>
+                <p>{{member.position}}</p>
+                <p>
+                    <a
+                        class="btn btn-success"
+                        href="#"
+                        role="button"
+                        data-toggle="modal"
+                        data-target="#mem{{member.pk}}"
+                        >View &raquo;</a
+                    >
+                </p>
+            </div>
+
+            <!-- Modal -->
+            <div
+                class="modal fade"
+                id="mem{{member.pk}}"
+                tabindex="-1"
+                role="dialog"
+                aria-labelledby="modelTitleId"
+                aria-hidden="true"
+            >
+                <div class="modal-dialog modal-sm" role="document">
+                    <div
+                        class="modal-content"
+                        style="background-color: rgba(0, 0, 0, 0.822)"
+                    >
+                        <div class="modal-header bg-success text-warning">
+                            <h5 class="modal-title">{{member.name}}</h5>
+                            <button
+                                type="button"
+                                class="close"
+                                data-dismiss="modal"
+                                aria-label="Close"
+                            >
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>
+                                <span class="text-danger">Position </span> :
+                                {{member.position}}
+                            </p>
+                            <img
+                                src="{{member.pic.url}}"
+                                class="img-fluid rounded-circle"
+                                alt="Member's Pic"
+                            />
+                            <div class="jumbotron">
+                                <p class="lead">{{member.detail}}</p>
+                            </div>
+                        </div>
+                        <div class="modal-footer bg-success">
+                            <div class="btn-group">
+                                <button
+                                    type="button"
+                                    class="btn btn-secondary"
+                                    data-dismiss="modal"
+                                >
+                                    Follow
+                                </button>
+                                <button type="button" class="btn btn-primary">
+                                    Hire Me
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <br />
+        <br />
+        <div id="services">
+            <h1 class="text-danger">
+                Services
+                <hr class="text-danger" />
+            </h1>
+        </div>
+        <div class="row featurette">
+            <div class="col-md-7">
+                <h2 class="featurette-heading">
+                    Website Design
+                    <span class="text-muted"> and Development.</span>
+                </h2>
+                <p class="lead">
+                    We offer website design, development and deployment services
+                    .We use Django - a python framework built for
+                    security,accuracy and efficiency. we offer deployment as per
+                    the client's requests.Get an amazing website at an
+                    affordable price
+                </p>
+            </div>
+            <div class="col-md-5">
+                <img
+                    src="{%static 'img/img5.jpg'%}"
+                    width="100%"
+                    height="100%"
+                    alt=""
+                />
+            </div>
+        </div>
+
+        <hr class="featurette-divider" />
+
+        <div class="row featurette">
+            <div class="col-md-7 order-md-2">
+                <h2 class="featurette-heading">
+                    Data Science,
+                    <span class="text-muted"
+                        >Data Analysis and Visualisation.</span
+                    >
+                </h2>
+                <p class="lead">
+                    We also offer to analyse your data and visualize it using
+                    pandas,matplotlib and seaborn. Get accurate analysis and
+                    beautiful charts and graphs for your excel sheet or csv
+                    files.
+                </p>
+            </div>
+            <div class="col-md-5 order-md-1">
+                <img
+                    src="{%static 'img/img2.jpg'%}"
+                    width="100%"
+                    height="100%"
+                    alt=""
+                />
+            </div>
+        </div>
+
+        <hr class="featurette-divider" />
+
+        <div class="row featurette">
+            <div class="col-md-7">
+                <h2 class="featurette-heading">
+                    And lastly, Movies
+                    <span class="text-muted">and Animations.</span>
+                </h2>
+                <p class="lead">
+                    Get movies from our telegram channel.We upload all requested
+                    movies at an affordable and comfortable rate.We can find
+                    most movies requested for at the moment but hope to expand
+                    soon.Our categories range from most mainstream movies and
+                    series ,as well as anime of all kind.
+                </p>
+            </div>
+            <div class="col-md-5">
+                <img
+                    src="{%static 'img/img9.jpg'%}"
+                    width="100%"
+                    height="100%"
+                    alt=""
+                />
+            </div>
+        </div>
+
+        <hr class="featurette-divider" />
+
+        <!-- /END THE FEATURETTES -->
+    </div>
+    <!-- /.container -->
+</main>
+{% endblock body %}

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+    {%load static%}
+
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="" />
+        <meta name="author" content="Mash Dexus" />
+        <!-- OG Meta Tags to improve the way the post looks when you share the page on Facebook, Twitter, LinkedIn -->
+        <meta property="og:site_name" content="The Family Chorale" />
+        <!-- website name -->
+        <meta property="og:site" content="familychorale.pythonanywhere.com" />
+        <!-- website link -->
+        <meta property="og:title" content="" />
+        <!-- title shown in the actual shared post -->
+        <meta property="og:description" content="Family Chorale website" />
+        <!-- description shown in the actual shared post -->
+        <meta property="og:image" content="" />
+        <!-- image link, make sure it's jpg -->
+        <meta property="og:url" content="" />
+        <!-- where do you want your post to link to -->
+        <meta name="twitter:card" content="summary_large_image" />
+
+        <title>Ectopuz</title>
+
+        <link
+            rel="canonical"
+            href="https://v5.getbootstrap.com/docs/5.0/examples/carousel/"
+        />
+
+        <link
+            rel="shortcut icon"
+            href="{%static 'img/favicon.png'%}"
+            type="image/x-icon"
+        />
+
+        <!-- Bootstrap core CSS -->
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+            integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I"
+            crossorigin="anonymous"
+        />
+        <script
+            src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+            integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"
+        ></script>
+
+        <!-- Custom styles for this template -->
+        <link href="{%static 'css/carousel.css'%}" rel="stylesheet" />
+    </head>
+
+    <body style="background-color: black" class="text-light">
+        <header>
+            <nav
+                class="navbar navbar-expand-md navbar-dark fixed-top"
+                style="background-color: #00000088"
+            >
+                <div class="container-fluid">
+                    <a
+                        class="navbar-brand text-warning"
+                        aria-current="page"
+                        href="{% url 'index' %}"
+                    >
+                        <img
+                            src="{%static 'img/favicon.png'%}"
+                            width="30"
+                            height="30"
+                            class="d-inline-block align-top"
+                            alt=""
+                        />
+                        Ectopuz
+                    </a>
+                    <button
+                        class="navbar-toggler"
+                        type="button"
+                        data-toggle="collapse"
+                        data-target="#navbarCollapse"
+                        aria-controls="navbarCollapse"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                    >
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarCollapse">
+                        <ul class="navbar-nav ml-auto mb-2 mb-md-0">
+                            {% block nav %}{% endblock nav %}
+                        </ul>
+                        <span class="mx-2"></span>
+                        <div class="d-flex">
+                            <!-- Button trigger modal -->
+                            <button
+                                type="button"
+                                class="btn btn-dark btn-sm btn-outline-warning"
+                                data-toggle="modal"
+                                data-target="#modelId"
+                            >
+                                Sign Up
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <!-- Modal -->
+            <div
+                class="modal fade"
+                id="modelId"
+                tabindex="-1"
+                role="dialog"
+                aria-labelledby="modelTitleId"
+                aria-hidden="true"
+            >
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Sign Up</h5>
+                            <button
+                                type="button"
+                                class="close"
+                                data-dismiss="modal"
+                                aria-label="Close"
+                            >
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">Body</div>
+                        <div class="modal-footer">
+                            <button
+                                type="button"
+                                class="btn btn-secondary"
+                                data-dismiss="modal"
+                            >
+                                Close
+                            </button>
+                            <button type="button" class="btn btn-primary">
+                                Save
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div style="background-color: black">
+            {% block body %} {% endblock body %}
+        </div>
+        <!-- FOOTER -->
+        <footer class="container static-bottom">
+            <br />
+            <br />
+            <p class="float-right"><a href="#">Back to top</a></p>
+            <p>
+                &copy; <script>document.write(new Date().getFullYear());</script> &middot; Ectopuz Tech 
+                
+            </p>
+        </footer>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="{%static 'js/nav.js'%}"></script>
+    </body>
+</html>

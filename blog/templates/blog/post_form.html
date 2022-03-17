@@ -1,0 +1,41 @@
+{% extends 'base.html' %} {% load static %} {% load crispy_forms_tags %} 
+{% block nav %}
+<li class="nav-item">
+    <a class="nav-link" href="{% url 'index' %}">Home</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="{% url 'contact' %}">About Us</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link text-warning" href="{% url 'blog' %}">Blog</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="{% url 'contact' %}">Login</a>
+</li>
+{% endblock nav %}
+{%block body %}
+<div class="container">
+  <br />
+  <br />
+  <div class="jumbotron jumbotron-fluid text-dark">
+    <p class="lead display-5">Post</p>
+    <form method="POST" role="form" enctype="multipart/form-data">
+      <div class="form-group">
+        <div class="form-control">{{form.title|as_crispy_field}}</div>
+        <div class="form-control">{{form.content|as_crispy_field}}</div>
+        <div class="form-control">{{form.image|as_crispy_field}}</div>
+    
+        {%csrf_token%}
+      </div>
+      <br/>
+      <button type="submit" class="btn btn-success btn-outline-warning">
+        Publish
+      </button>
+    </form>
+  </div>
+</div>
+<br />
+{% endblock body%}

@@ -1,0 +1,40 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% load crispy_forms_tags %} 
+{%block nav %}
+<li class="nav-item">
+    <a class="nav-link" href="{% url 'index' %}">Home</a>
+</li>
+
+<li class="nav-item">
+    <a class="nav-link text-warning" href="{% url 'blog' %}">Blog</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="{% url 'contact' %}">Login</a>
+</li>
+{% endblock nav %} 
+{%block body %}
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <div class="row">
+            <img
+                src="{{post.author.pic.url}}"
+                class="img-fluid rounded-circle col-1"
+                alt="Avatar"
+            />
+            <p class="lead col-2 mt-3" style="font-weight:bold; ">
+                {{post.author.name}} &nbsp; &nbsp;<span class="text-muted">{{post.publish_date}}</span>
+            </p>
+        </div>
+
+        <hr class="my-4" />
+        <h2><strong>{{post.title}}</strong></h2>
+        <img src="{{post.image.url}}" alt="image" width="100%">
+        <p>{{post.content}}</p>
+        <a class="btn btn-primary btn-lg" href="#" role="button">Comment</a>
+    </div>
+</div>
+{% endblock %}
