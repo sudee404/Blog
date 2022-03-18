@@ -1,17 +1,15 @@
-{% extends 'base.html' %} {% load static %}
-{% block nav %}
+{% extends 'base.html' %} {% load static %} {% block title %}
+<title>Contact</title>
+{% endblock title %} {% block nav %}
 <li class="nav-item">
-    <a class="nav-link " href="{% url 'index' %}">Home</a>
+    <a class="nav-link" href="{% url 'index' %}">Home</a>
 </li>
 
 <li class="nav-item">
-    <a class="nav-link" href="{% url 'blog' %}">Blog</a>
+    <a class="nav-link" href="{% url 'post-list' %}">Blog</a>
 </li>
 <li class="nav-item">
     <a class="nav-link text-warning" href="{% url 'contact' %}">Contact</a>
 </li>
-<li class="nav-item">
-    <a class="nav-link" href="{% url 'contact' %}">Login</a>
-</li>
-{% endblock nav %} 
-{% block body %}{%endblock body%}
+
+{% endblock nav %} {% block body %}{%endblock body%}

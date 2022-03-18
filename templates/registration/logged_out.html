@@ -1,0 +1,32 @@
+{% extends "base.html" %} {% load static %} {% block body %}
+<div class="container">
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container mx-auto justify-content-center text-center">
+            <br />
+            <br />
+            <h1 class="display-3">GoodBye!</h1>
+            <p class="lead">Your have logged out successfully</p>
+            <hr class="my-2" />
+            <br />
+            <br />
+            <p class="lead btn-group">
+                <a
+                    href="{%url 'login'%} "
+                    class="btn btn-primary btn-outline-warning"
+                    type="submit"
+                    >Login Again</a
+                >
+                <a
+                    href="{%url 'index'%} "
+                    class="btn btn-success btn-outline-warning"
+                    type="submit"
+                    >Go Home</a
+                >
+            </p>
+        </div>
+    </div>
+</div>
+{% block footer %}
+<footer class="container fixed-bottom">
+    {% endblock footer %} {% endblock %}
+</footer>

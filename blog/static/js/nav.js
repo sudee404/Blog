@@ -7,10 +7,5 @@ $(document).ready(function () {
             $(this).removeClass("text-warning");
         });
     });
-    headline.mouseenter(function () {
-        $(this).addClass("text-success");
-        $(this).mouseleave(function () {
-            $(this).removeClass("text-success");
-        });
-    });
+    
 });

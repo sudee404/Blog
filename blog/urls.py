@@ -2,8 +2,15 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('',views.BlogListView.as_view(),name='blog'),
-    path('post/',views.BlogCreateView.as_view(), name='post-blog'),
-    path('post/<int:pk>',views.BlogDetailView.as_view(), name='post-detail'),
-    
+    path('',views.PostListView.as_view(),name='post-list'),
+    path('post/new/',views.PostCreateView.as_view(), name='post-form'),
+    path('post/<int:pk>/',views.PostDetailView.as_view(), name='post-detail'),
+    path('post/<int:pk>/edit/',views.PostUpdateView.as_view(), name='post-edit'),
+    path('post/<int:pk>/remove/',views.PostDeleteView.as_view(), name='post-remove'),
+    path('drafts/',views.DraftListView.as_view(), name='post-drafts'), 
+    path('post/<int:pk>/comment/',views.add_comment_to_post,name='add-comment'),
+    path('comment/<int:pk>/approve/',views.approve_comment,name='approve-comment'),
+    path('comment/<int:pk>/remove/',views.remove_comment,name='remove-comment'),
+    path('post/<int:pk>/publish',views.publish_post,name='post-publish') ,
+    path('my-stories/',views.stories,name='stories')
 ]

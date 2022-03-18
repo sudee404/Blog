@@ -1,0 +1,56 @@
+{% extends "base.html" %} {% block body %}
+<div class="container">
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container mx-auto justify-content-center text-center">
+                  			
+			
+			{% block center %}
+			{% if user.is_authenticated %}
+			<h1 class="display-3">Logged In</h1>
+            <p class="lead">Your have signed in successfully</p>
+            <hr class="my-2" />
+            <p class="lead">
+                
+            </p>
+            {% else %}
+			<h1 class="display-3">Sign In</h1>
+            <p class="lead">Enter your credentials below</p>
+            <hr class="my-2" />
+
+			{% if form.errors %}
+            <p class='text-danger'>Your username and password do not match those in the system</p>
+            {% endif %}
+            <form method="post" action="{% url 'login' %}">
+				{% csrf_token %}
+				<div class="form-group">
+					{{  form.username.label_tag  }}
+					{{  form.username  }}
+										
+				</div>
+				<br>
+				<div class="form-group">
+					{{  form.password.label_tag  }}
+					{{  form.password  }}
+				</div>
+				<br>
+				<button type="submit" class="btn btn-primary">Submit</button>
+
+			</form>
+			<br>
+			{% if form.errors %}
+            <a href="{% url 'password_reset' %}"><p class='text-warning'>Forgot your password ?</p></a>
+            {% endif %}
+            {% endif %}
+			{% endblock center %}
+				 
+			
+			</p>
+            
+            
+        </div>
+    </div>
+</div>
+{% block footer %}
+<footer class="container fixed-bottom">
+    {% endblock footer %} {% endblock %}
+</footer>

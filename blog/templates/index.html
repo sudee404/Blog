@@ -9,13 +9,10 @@
     <a class="nav-link" href="#services">Services</a>
 </li>
 <li class="nav-item">
-    <a class="nav-link" href="{% url 'blog' %}">Blog</a>
+    <a class="nav-link" href="{% url 'post-list' %}">Blog</a>
 </li>
 <li class="nav-item">
     <a class="nav-link" href="{% url 'contact' %}">Contact</a>
-</li>
-<li class="nav-item">
-    <a class="nav-link" href="{% url 'contact' %}">Login</a>
 </li>
 {% endblock nav %} {% block body %}
 <main>
@@ -45,8 +42,6 @@
                         class="carousel-caption text-left"
                         style="
                             position: absolute;
-                            bottom: 20px;
-                            right: 20px;
                             background-color: rgba(0, 0, 0, 0.514);
                             color: white;
                             border-radius: 4rem;
@@ -88,8 +83,6 @@
                         class="carousel-caption"
                         style="
                             position: absolute;
-                            bottom: 20px;
-                            right: 20px;
                             background-color: rgba(0, 0, 0, 0.514);
                             color: white;
                             border-radius: 4rem;
@@ -105,7 +98,7 @@
                         <p>
                             <a
                                 class="btn btn-lg btn-success"
-                                href="#"
+                                href="{% url 'post-list' %}"
                                 role="button"
                                 >View Blog</a
                             >
@@ -131,9 +124,7 @@
                         class="carousel-caption text-right"
                         style="
                             position: absolute;
-                            bottom: 20px;
-                            right: 20px;
-                            background-color: rgba(0, 0, 0, 0.514);
+                            background-color: rgba(0, 0, 0, 0.644);
                             color: white;
                             border-radius: 4rem;
                             padding-left: 20px;
@@ -193,7 +184,7 @@
             {% for member in members %}
             <div class="col-lg-4">
                 <img
-                    src="{{member.pic.url}}"
+                    src="{{ member.pic.url }}"
                     class="bd-placeholder-img rounded-circle"
                     width="140"
                     height="140"
@@ -203,15 +194,15 @@
                     alt=""
                 />
 
-                <h2 style="font-variant: small-caps">{{member.name}}</h2>
-                <p>{{member.position}}</p>
+                <h2 style="font-variant: small-caps">{{ member.name }}</h2>
+                <p>{{ member.position }}</p>
                 <p>
                     <a
                         class="btn btn-success"
                         href="#"
                         role="button"
                         data-toggle="modal"
-                        data-target="#mem{{member.pk}}"
+                        data-target="#mem{{ member.pk }}"
                         >View &raquo;</a
                     >
                 </p>
@@ -220,7 +211,7 @@
             <!-- Modal -->
             <div
                 class="modal fade"
-                id="mem{{member.pk}}"
+                id="mem{{ member.pk }}"
                 tabindex="-1"
                 role="dialog"
                 aria-labelledby="modelTitleId"
@@ -232,7 +223,7 @@
                         style="background-color: rgba(0, 0, 0, 0.822)"
                     >
                         <div class="modal-header bg-success text-warning">
-                            <h5 class="modal-title">{{member.name}}</h5>
+                            <h5 class="modal-title">{{ member.name }}</h5>
                             <button
                                 type="button"
                                 class="close"
@@ -245,15 +236,15 @@
                         <div class="modal-body">
                             <p>
                                 <span class="text-danger">Position </span> :
-                                {{member.position}}
+                                {{ member.position }}
                             </p>
                             <img
-                                src="{{member.pic.url}}"
+                                src="{{ member.pic.url }}"
                                 class="img-fluid rounded-circle"
                                 alt="Member's Pic"
                             />
                             <div class="jumbotron">
-                                <p class="lead">{{member.detail}}</p>
+                                <p class="lead">{{ member.detail }}</p>
                             </div>
                         </div>
                         <div class="modal-footer bg-success">

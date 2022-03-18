@@ -5,37 +5,35 @@
     <a class="nav-link" href="{% url 'index' %}">Home</a>
 </li>
 <li class="nav-item">
-    <a class="nav-link" href="{% url 'post-list' %}">Blog</a>
+    <a class="nav-link" href="{% url 'contact' %}">About Us</a>
 </li>
-{% if user.is_authenticated %}
 <li class="nav-item">
-    <a class="nav-link text-warning" href="{% url 'stories' %}">Stories</a>
+    <a class="nav-link text-warning" href="{% url 'post-list' %}">Blog</a>
 </li>
-{% endif %}
 <li class="nav-item">
     <a class="nav-link" href="{% url 'contact' %}">Contact</a>
 </li>
-
-
+<li class="nav-item">
+    <a class="nav-link" href="{% url 'login' %}">Login</a>
+</li>
 {% endblock nav %} {%block body %}
 <div class="container">
     <br />
     
     <br />
     <div class="jumbotron">
-        <p class="lead display-5 text-center">Post something</p>
-        <form method="POST" role="form" enctype="multipart/form-data">
+        <p class="lead display-5 text-center">Add Comment</p>
+        <form method="post" role="form" enctype="multipart/form-data">
             <div class="form-group">
                 {{ form|crispy }}
                 {%csrf_token%}
             </div>
             <br />
-            <button type="submit" class="save btn btn-success btn-outline-warning">
-                Save
+            <button type="submit" class="btn btn-success btn-outline-warning">
+                
             </button>
         </form>
     </div>
 </div>
 <br />
-<script>var editor = new MediumEditor(.editable);</script>
 {% endblock body%}
