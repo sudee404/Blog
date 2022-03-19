@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 from django.utils import timezone
 from django.urls import reverse,reverse_lazy
 # Create your models here.
@@ -30,11 +31,7 @@ class Comment(models.Model):
     author = models.CharField(max_length=200,default='Anonymous')
     text = models.TextField()
     created_at = models.DateTimeField(default=timezone.now)
-    approved_comment = models.BooleanField(default=False)
     
-    def approve(self):
-        self.approved_comment = True
-        self.save()
         
     def get_absolute_url(self):
         return reverse("post-list")

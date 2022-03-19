@@ -17,33 +17,78 @@
 </li>
 
 {% endblock nav %} {%block body %}
-<div class="jumbotron jumbotron-fluid">
-    <div class="container">
-        <div class="row">
-            <img
-                src="{{ post.author.pic.url }}"
-                class="img-fluid rounded-circle col-1"
-                alt="Avatar"
-            />
-            <p class="lead col-2 mt-3" style="font-weight: bold">
-                @{{ post.author }} &nbsp;<br>
-                
-                {% if post.publish_date %}
-                <span class="text-muted"
-                >{{ post.publish_date }}</span>
-                {% else %}
-                <span class="text-muted"
-                >Draft</span>
-                {% endif %}
+<div class="card container bg-transparent">
+    <div class="card-body">
+        <p class="card-text my-4">
+            
+                <p class="lead  " style="font-weight: bold">
+                    @{{ post.author|upper }} &nbsp;<br />
+                    <small class="text-muted">
+                        FOLLOW
+                    </small>
                     
+                </p>
+
+        </p>
+    </div>
+    <div class="card-body container">
+        <h3 class="card-title display-2 text-center text-warning">{{ post.title }}</h3>
+        <div class="card-text">
+            <p class="lead text-center" style="font-weight: bold">
+                
+                <small class="text-muted">
+                    {% if post.publish_date %}
+                <span class="text-muted"><span class="text-success">Published</span> : {{ post.publish_date }}</span>
+                {% else %}
+                <span class="text-muted">Draft</span>
+                {% endif %}
+                </small>
+                
             </p>
         </div>
-
-        <hr class="my-4" />
-        <h2><strong style="font-variant: small-caps;" class="text-warning">{{ post.title}}</strong></h2>
-        <img src="{{ post.image.url }}" alt="image" width="50%" />
-        <p>{{ post.content }}</p>
-        <a class="btn btn-primary btn-lg" href="#" role="button">Comment</a>
+        <img
+        src="{{ post.image.url }}"
+        class="card-img-bottom container"
+        alt="..."
+    />
+    
+    <div class="card-text h4 container mt-4">{{ post.content|safe }}</div>
+    </div>
+    <div class="card-body">
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-5 text-primary">Leave a Comment</h1>
+                <p class="lead">What are your thoughts or questions on the subject.</p>
+                <hr class="my-4">
+                <form method="POST" action="{%url 'add-comment' pk=post.pk%}">
+                    <div class="form-group">
+                        {{ form|crispy }}
+                        {%csrf_token%}
+                    </div>
+                    <br />
+                    <button type="submit" class="save btn btn-primary btn-lg">
+                        Comment
+                    </button>
+                </form>
+                
+            </div>
+        </div>
+    </div>
+    <div class="card-body container">
+        
+        {% if comments %}
+            {% for comment in comments %}
+                <div class="jumbotron jumbotron-fluid">
+                    <div class="container">
+                        <p><span class="text-warning quote mr-5">{{comment.author}}</span><span class="text-success mr-5">{{comment.created_at}}</span></p>
+                        <p class="lead">{{comment.text}}</p>
+                        
+                        <hr class="my-4"/>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+            
     </div>
 </div>
 {% endblock %}

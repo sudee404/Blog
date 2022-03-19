@@ -30,7 +30,7 @@
             </p>
         </div>
     </div>
-    <br/>
+    <br />
     {% if posts %}
     <div class="container">
         <ul class="nav nav-tabs">
@@ -41,7 +41,7 @@
                     style="text-decoration: none"
                     class="text-right mr-3 text-warning"
                     >Drafts<span
-                        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                        class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success"
                         >{{ drafts.count }}</span
                     ></a
                 >
@@ -54,7 +54,7 @@
                     style="text-decoration: none"
                     ><span class="text-right ml-3 text-success"
                         >Published<span
-                            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary"
                         >
                             {{ published.count }}
                         </span></span
@@ -66,66 +66,56 @@
             <div id="drafts" class="tab-pane active">
                 <br />
                 {% if drafts %}
-                <h2 class="text-info">Drafts</h2>
-                <hr class="bg-danger" />
-                 {% for post in drafts %}
-                <div class="jumbotron pl-3">
-                    <div class="row px-3 mx-auto">
-                        <div class="col-9">
-                            <a
-                                href="{{ post.author.get_absolute_url }}"
-                                class="text-light"
-                                style="text-decoration: none"
-                            >
-                                <img
-                                    src="{{ post.author.pic.url }}"
-                                    class="img-fluid rounded-circle"
-                                    alt="Avatar"
-                                    width="4%"
-                                />
-                                &nbsp; @{{ post.author }}</a
-                            >
-                            &nbsp; &middot; &nbsp;
-                            <span
-                                >Created :
-                                <span class="text-danger"
-                                    >{{ post.create_date|date:'D-M-Y' }}</span
-                                ></span
-                            >
-                            &nbsp; &middot; &nbsp;
-                            <a
-                                type="button"
-                                href="{% url 'post-publish' pk=post.pk %}"
-                                class="btn btn-info btn-sm btn-outline-light rounded-pill"
-                                >Publish
-                            </a>
-                            <p class="lead" style="font-weight: bolder">
-                                <br />
+                <div class="row mx-auto justify-content-center">
+                    {% for post in drafts %}
+                    <div class="card bg-dark col-lg-5 mx-auto col-sm-12 mt-3">
+                        <div class="card-header text-dark">
+                            <h5 class="card-title px-auto mx-auto">
                                 <a
                                     href="{{  post.get_absolute_url  }}"
-                                    class="text-warning img-fluid rounded-circle hd"
+                                    class="text-warning"
                                     style="text-decoration: none"
                                     >{{ post.title }}</a
                                 >
-                            </p>
-                            <p>{{ post.content|truncatewords:100 }}</p>
+                            </h5>
                         </div>
+
                         {% if post.image %}
-                        <div
-                            class="col-3 justify-content-center mx-auto d-lg-block"
-                        >
-                            <img
-                                src="{{ post.image.url }}"
-                                class="img-fluid h-100 rounded-top"
-                                alt=""
-                                width="90%"
-                            />
+                        <img
+                            src="{{post.image.url}}"
+                            class="card-img-top"
+                            alt=""
+                        />
+                        {%endif%}
+                        <div class="card-body">
+                            <p class="card-text">
+                                {{ post.content|truncatewords:25 }}
+                            </p>
+                            <div class="row mx-auto">
+                                
+                                <a
+                                href="{% url 'post-publish' pk=post.pk %}"
+                                class="card-link btn btn-success col-3"
+                                >Publish</a
+                            >
+                            <a
+                                href="{% url 'post-edit' pk=post.pk %}"
+                                class="card-link btn btn-warning col-3"
+                                >Edit</a
+                            >
+                            <a
+                                href="{% url 'post-remove' pk=post.pk %}"
+                                class="card-link btn btn-danger col-3"
+                                >Delete</a
+                            >
+                            </div>
                         </div>
-                        {% endif %}
                     </div>
-                    <hr class="my-2" />
+
+                    {% endfor %}
                 </div>
-                {% endfor %} {% else %}
+
+                {% else %}
                 <div class="jumbotron jumbotron-fluid text-center">
                     <h1 class="display-4">No Drafts</h1>
                     <hr class="my-4" />
@@ -139,67 +129,47 @@
             <div id="published" class="tab-pane fade">
                 <br />
                 {% if published %}
-                <h2 class="text-info">Published</h2>
-                <hr class="bg-danger" />
-                {% for post in published %}
-                <br />
-                <div class="jumbotron pl-3">
-                    <div class="row px-3 mx-auto d-flex">
-                        <div class="col-9">
-                            <a
-                                href="{{ post.author.get_absolute_url }}"
-                                class="text-light"
-                                style="text-decoration: none"
-                            >
-                                <img
-                                    src="{{ post.author.pic.url }}"
-                                    class="img-fluid rounded-circle"
-                                    alt="Avatar"
-                                    width="4%"
-                                />
-                                &nbsp; @{{ post.author }}</a
-                            >
-                            &nbsp; &middot; &nbsp;
-                            <span class="text-danger"
-                                >Published : {{ post.publish_date|date:'D-M-Y'}}</span
-                            >&nbsp; &middot; &nbsp;
-                            <a
-                                type="button"
-                                href="{{  post.get_absolute_url  }}"
-                                class="btn btn-info btn-sm rounded-pill"
-                            >
-                                Comment{{ post.approve_comments.count|pluralize}}
-                                <span class="badge bg-secondary"
-                                    >{{ post.approve_comments.count|default:'0'}}</span
-                                >
-                            </a>
-                            <p class="lead" style="font-weight: bolder">
-                                <br />
+                <div class="row mx-auto justify-content-center">
+                    {% for post in published %}
+                    <div class="card bg-dark col-lg-5 mx-auto col-sm-12 mt-3">
+                        <div class="card-header text-dark">
+                            <h5 class="card-title px-auto mx-auto">
                                 <a
                                     href="{{  post.get_absolute_url  }}"
-                                    class="text-warning img-fluid rounded-circle hd"
+                                    class="text-warning"
                                     style="text-decoration: none"
                                     >{{ post.title }}</a
                                 >
-                            </p>
-                            <p>{{ post.content|truncatewords:50 }}</p>
+                            </h5>
                         </div>
+
                         {% if post.image %}
-                        <div
-                            class="col-3 justify-content-center mx-auto d-lg-block"
-                        >
-                            <img
-                                src="{{ post.image.url }}"
-                                class="img-fluid h-100 rounded-top"
-                                alt=""
-                                width="90%"
-                            />
+                        <img
+                            src="{{post.image.url}}"
+                            class="card-img-top"
+                            alt=""
+                        />
+                        {%endif%}
+                        <div class="card-body">
+                            <p class="card-text">
+                                {{ post.content|truncatewords:25 }}
+                            </p>
+                            <a
+                                href="{% url 'post-edit' pk=post.pk %}"
+                                class="card-link btn btn-warning"
+                                >Edit</a
+                            >
+                            <a
+                                href="{% url 'post-remove' pk=post.pk %}"
+                                class="card-link btn btn-danger"
+                                >Delete</a
+                            >
                         </div>
-                        {% endif %}
                     </div>
-                    <hr class="my-2" />
+
+                    {% endfor %}
                 </div>
-                {% endfor %} {% else %}
+                {% else %}
                 <br />
                 <div class="jumbotron jumbotron-fluid text-center">
                     <h1 class="display-4">No Posts Published</h1>

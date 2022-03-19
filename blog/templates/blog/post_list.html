@@ -16,31 +16,31 @@
     <a class="nav-link" href="{% url 'contact' %}">Contact</a>
 </li>
 
-
 {% endblock nav %} {% block body %}
 
 <main>
     <div class="jumbotron jumbotron-fluid">
         <div class="container text-center">
             <h1 class="display-4 text-warning">Welcome to our blog</h1>
-            <p class="lead">Browse through our stories to find whichever tickles your fancy.</p>
-            <hr class="my-4">
-            
+            <p class="lead">
+                Browse through our stories to find whichever tickles your fancy.
+            </p>
+            <hr class="my-4" />
+
             {% if user.is_authenticated %}
             <p class="lead btn-group">
-                <a class="btn btn-warning" href="{%url 'post-form'%}">New Post</a>
-                <a class="btn btn-danger">Search post</a>
+                <a class="btn btn-warning" href="{%url 'post-form'%}"
+                    >New Post</a
+                >
+                <a class="btn btn-success">Search post</a>
             </p>
             {% else %}
-            <p class="lead">
-                You must log in to post on this blog
-            </p>
-            
+            <p class="lead">You must log in to post on this blog</p>
+
             <p class="lead btn-group">
-                <a class="btn btn-danger">Search post</a>
+                <a class="btn btn-success">Search post</a>
             </p>
             {% endif %}
-                
         </div>
     </div>
     <div class="container">
@@ -59,21 +59,24 @@
                         class="text-light"
                         style="text-decoration: none"
                     >
-                        <img
-                            src="{{ post.author.pic.url }}"
-                            class="img-fluid rounded-circle"
-                            alt="Avatar"
-                            width="4%"
-                        />
-                        &nbsp; @{{ post.author }}</a
+                        @{{ post.author }}</a
                     >
                     &nbsp; &middot; &nbsp;
-                    <span class="text-danger">{{ post.publish_date|date:'D-M-Y' }}</span>
+                    <span class="text-primary"
+                        >{{ post.publish_date|date:'D-M-Y' }}</span
+                    >
                     &nbsp; &middot; &nbsp;
-                    <a type="button" href="{{  post.get_absolute_url  }}" class="btn btn-info btn-sm rounded-pill">
-                        Comment{{ post.approve_comments.count|pluralize }} <span class="badge bg-secondary">{{ post.approve_comments.count|default:'0' }}</span>
+                    <a
+                        type="button"
+                        href="{{  post.get_absolute_url  }}"
+                        class="btn btn-info btn-sm rounded-pill"
+                    >
+                        Comment{{ post.approve_comments.count|pluralize }}
+                        <span class="badge bg-secondary"
+                            >{{ post.approve_comments.count|default:'0' }}</span
+                        >
                     </a>
-                    
+
                     <p class="lead" style="font-weight: bolder">
                         <br />
                         <a
@@ -85,7 +88,6 @@
                     </p>
 
                     <p>{{ post.content|truncatewords:50 }}</p>
-                    
                 </div>
 
                 {% if post.image %}

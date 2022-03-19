@@ -58,6 +58,8 @@
             media="screen"
             charset="utf-8"
         />
+        <!-- favicon -->
+        <link rel="shortcut icon" href="{% static 'img//////'%}" type="image/x-icon">
         <!-- Custom styles for this template -->
         <link href="{% static 'css/carousel.css' %}" rel="stylesheet" />
         {% block style %} {% endblock style %}
@@ -122,7 +124,7 @@
                                     >Login</a
                                 >/<a
                                 class="btn-sm text-warning"
-                                href="{% url 'login' %}"
+                                href="{% url 'signup' %}"
                                 >Sign Up</a>
                                 </div>
                             </li>

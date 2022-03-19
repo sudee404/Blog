@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post,Team
+from .models import Post,Team,Comment
 # Register your models here.
 
 @admin.register(Post)
@@ -11,12 +11,12 @@ class PostInline(admin.TabularInline):
 
     model = Post
 
-# @admin.register(Author)
-# class AuthorAdmin(admin.ModelAdmin):
-#     list_display = ('name',)
-#     inlines = [PostInline,]
+
     
 @admin.register(Team)
 class TeamAdmin(admin.ModelAdmin):
     list_display = ('name',)
     
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ('author','created_at')
