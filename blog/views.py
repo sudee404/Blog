@@ -44,11 +44,12 @@ class PostListView(ListView):
 
 class PostDetailView(DetailView):
     model = Post    
-    
+        
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['form'] = CommentForm
-        context['comments'] = Comment.objects.all().order_by('-created_at')
+        context['comments'] = Comment.objects.filter(post = Post.objects.get(pk=self.kwargs['pk'])).order_by('-created_at')
+        
         return context
     
 
@@ -59,6 +60,11 @@ class PostCreateView(LoginRequiredMixin, CreateView):
     
     model = Post
     form_class = PostForm
+    
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+        
 
 
 class PostUpdateView(LoginRequiredMixin, UpdateView):
@@ -82,7 +88,7 @@ class PostDeleteView(LoginRequiredMixin, DeleteView):
 def publish_post(request, pk):
     post = get_object_or_404(Post, pk=pk)
     post.publish()
-    return redirect('post-detail', pk=pk)
+    return redirect('stories')
 
 
 @login_required
@@ -104,11 +110,6 @@ def add_comment_to_post(request, pk):
     return render(request, 'blog/comment_form.html', context={'form': form, })
 
 
-@login_required
-def approve_comment(request, pk):
-    comment = get_object_or_404(Comment, pk=pk)
-    comment.approve()
-    return redirect('post-detail', pk=comment.post.pk)
 
 
 @login_required
@@ -122,10 +123,10 @@ def remove_comment(request, pk):
 
 @login_required
 def stories(request):
-    posts = Post.objects.all()
-    pub_posts = Post.objects.filter(
+    posts = Post.objects.filter(author=request.user)
+    pub_posts = posts.filter(
         publish_date__lte=timezone.now()).order_by('publish_date')
-    drafts = Post.objects.filter(
+    drafts = posts.filter(
         publish_date__isnull=True).order_by('create_date')
     context = {
         'published': pub_posts,

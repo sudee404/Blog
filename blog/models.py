@@ -1,7 +1,6 @@
 from django.db import models
-from django.contrib.auth.models import User
 from django.utils import timezone
-from django.urls import reverse,reverse_lazy
+from django.urls import reverse
 # Create your models here.
 class Post(models.Model):
     title = models.CharField(max_length=200,help_text='Enter Post title',unique=True)
@@ -11,13 +10,11 @@ class Post(models.Model):
     create_date = models.DateField(default=timezone.now)
     publish_date = models.DateTimeField(blank=True,null=True)
     
+    
 
     def publish(self):
         self.publish_date = timezone.now()
         self.save()
-        
-    def approve_comments(self):
-        self.comments.filter(approved_comment=True)
     
     def get_absolute_url(self):
         return reverse("post-detail", kwargs={"pk": self.pk})
@@ -49,3 +46,8 @@ class Team(models.Model):
     
     def __str__(self):
         return self.name
+
+class Author(models.Model):
+    user = models.ForeignKey('auth.User',on_delete=models.CASCADE,null=True,blank=True)
+    pic = models.ImageField(upload_to='pic',default='default.png',null=True, blank=True)
+    

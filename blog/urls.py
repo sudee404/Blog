@@ -8,7 +8,6 @@ urlpatterns = [
     path('post/<int:pk>/edit/',views.PostUpdateView.as_view(), name='post-edit'),
     path('post/<int:pk>/remove/',views.PostDeleteView.as_view(), name='post-remove'), 
     path('post/<int:pk>/comment/',views.add_comment_to_post,name='add-comment'),
-    path('comment/<int:pk>/approve/',views.approve_comment,name='approve-comment'),
     path('comment/<int:pk>/remove/',views.remove_comment,name='remove-comment'),
     path('post/<int:pk>/publish',views.publish_post,name='post-publish') ,
     path('my-stories/',views.stories,name='stories'),

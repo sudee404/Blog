@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Post,Team,Comment
+from .models import Post,Team,Comment,Author
+
 # Register your models here.
 
 @admin.register(Post)
@@ -20,3 +21,7 @@ class TeamAdmin(admin.ModelAdmin):
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
     list_display = ('author','created_at')
+    
+@admin.register(Author)
+class AuthorAdmin(admin.ModelAdmin):
+    list_display = ('pic',)

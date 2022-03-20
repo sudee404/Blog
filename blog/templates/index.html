@@ -3,16 +3,15 @@
     <a class="nav-link text-warning" href="{% url 'index' %}">Home</a>
 </li>
 <li class="nav-item">
-    <a class="nav-link" href="#about">About Us</a>
-</li>
-<li class="nav-item">
-    <a class="nav-link" href="#services">Services</a>
-</li>
-<li class="nav-item">
     <a class="nav-link" href="{% url 'post-list' %}">Blog</a>
 </li>
+{% if user.is_authenticated %}
 <li class="nav-item">
-    <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+    <a class="nav-link" href="{% url 'stories' %}">Stories</a>
+</li>
+{% endif %}
+<li class="nav-item">
+    <a class="nav-link" href="#contacts">Contact</a>
 </li>
 {% endblock nav %} {% block body %}
 <main>

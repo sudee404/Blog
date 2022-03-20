@@ -13,7 +13,7 @@
 </li>
 {% endif %}
 <li class="nav-item">
-    <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+    <a class="nav-link" href="#contacts">Contact</a>
 </li>
 
 {% endblock nav %} {%block body %}
@@ -40,7 +40,7 @@
                     {% if post.publish_date %}
                 <span class="text-muted"><span class="text-success">Published</span> : {{ post.publish_date }}</span>
                 {% else %}
-                <span class="text-muted">Draft</span>
+                <span class="text-muted"><span class="text-secondary">Created</span> : {{ post.create_date }}</span>
                 {% endif %}
                 </small>
                 
@@ -48,12 +48,14 @@
         </div>
         <img
         src="{{ post.image.url }}"
-        class="card-img-bottom container"
+        class="card-img-bottom container img-responsive"
         alt="..."
+        
     />
     
     <div class="card-text h4 container mt-4">{{ post.content|safe }}</div>
     </div>
+    {% if post.publish_date %}
     <div class="card-body">
         <div class="jumbotron jumbotron-fluid">
             <div class="container">
@@ -83,12 +85,34 @@
                         <p><span class="text-warning quote mr-5">{{comment.author}}</span><span class="text-success mr-5">{{comment.created_at}}</span></p>
                         <p class="lead">{{comment.text}}</p>
                         
+                        {% if author %}
+                            
+                        {% endif %}
+                            
                         <hr class="my-4"/>
                     </div>
                 </div>
             {% endfor %}
+            {% else %}
+            <div class="jumbotron jumbotron-fluid">
+                <div class="container">
+                    <h1 class="display-4">No Comments</h1>
+                    <p class="lead">Be the first to comment on this post.</p>
+                   
+                </div>
+            </div>
         {% endif %}
             
     </div>
+    {% else %}
+    <div class="mx-auto">
+                                
+        <a
+        href="{% url 'post-publish' pk=post.pk %}"
+        class="btn btn-success"
+        >Publish Post</a
+    >
+    {% endif %}
+    
 </div>
 {% endblock %}

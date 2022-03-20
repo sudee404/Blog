@@ -11,7 +11,7 @@
     <a class="nav-link text-warning" href="{% url 'stories' %}">Stories</a>
 </li>
 <li class="nav-item">
-    <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+    <a class="nav-link" href="#contacts">Contact</a>
 </li>
 {% endblock nav %} {% block body %}
 <main>
@@ -182,19 +182,17 @@
         </div>
     </div>
     {% else %}
-    <div class="jumbotron">
-        <h1 class="display-4">No Posts</h1>
-        <p class="lead">You haven't posted anything yet</p>
-        <hr class="my-4" />
-        <p>Click below to make your first post.</p>
-        <a
-            class="btn btn-danger btn-outline-warning btn-lg"
-            href="{% url 'post-form' %}"
-            role="button"
-            >Post</a
-        >
+    <div class="container">
+        <div class="container">
+            <div class="jumbotron text-center">
+                
+                <p class="lead">You haven't posted anything yet</p>
+                <hr class="my-4" />
+                <p>Click above to make your first post.</p>
+            </div>
+        </div>
     </div>
     {% endif %}
 </main>
 {% endblock body %} {% block footer %}
-<footer class="container fixed-bottom">{% endblock footer %}</footer>
+<footer id="contacts"class="container fixed-bottom">{% endblock footer %}</footer>
