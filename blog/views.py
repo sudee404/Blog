@@ -1,9 +1,9 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.contrib.auth.decorators import login_required, permission_required
-from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils import timezone
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, FormView
-from .models import Post, Team, Comment
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from .models import Post, PostInstance, Team, Comment
 from .forms import PostForm, CommentForm, UserForm 
 from django.urls import reverse_lazy
  
@@ -26,7 +26,7 @@ def signup(request):
         if form.is_valid():
             form.save(commit=True)
 
-            return redirect('login',)
+            return redirect('create_author',)
         
     return render(request, 'sign_up.html', context=context)
 
@@ -37,14 +37,26 @@ def contact(request):
 
 class PostListView(ListView):
     model = Post
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if self.request.user.is_authenticated:
+            context['starred'] = PostInstance.objects.filter(starred=True,starrer=self.request.user)
+            context['not_starred'] = Post.objects.filter(publish_date__lte=timezone.now()).order_by('publish_date').exclude(postinstance__starrer=self.request.user)
+        
+        return context
 
     def get_queryset(self):
         return Post.objects.filter(publish_date__lte=timezone.now()).order_by('publish_date')
 
-
+class SearchListView(ListView):
+    model = Post
+    template_name = 'blog/search_list.html'
+            
 class PostDetailView(DetailView):
     model = Post    
-        
+    
+    
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['form'] = CommentForm
@@ -109,7 +121,20 @@ def add_comment_to_post(request, pk):
 
     return render(request, 'blog/comment_form.html', context={'form': form, })
 
+@login_required
+def star_post(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    post_instance = PostInstance(post = post,starrer=request.user)
+    post_instance.star(request)
+    post_instance.save()
+    return redirect('post-list')
 
+@login_required
+def unstar_post(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    post_instance = PostInstance.objects.filter(post = post)[0]
+    post_instance.delete()
+    return redirect('post-list')
 
 
 @login_required

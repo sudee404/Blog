@@ -23,6 +23,25 @@ class Post(models.Model):
     def __str__(self):
         return self.title
     
+import uuid
+class PostInstance(models.Model):
+    """model representing particular instance of a post that is to be starred"""
+    id = models.UUIDField(primary_key=True,default=uuid.uuid4,help_text="unique id for this specific post")
+    post = models.ForeignKey(Post,on_delete=models.CASCADE)
+    starrer = models.ForeignKey('auth.User',on_delete=models.SET_NULL,null=True)
+    starred = models.BooleanField(default=False)
+    
+    class Meta:
+        unique_together = ['post','starrer']    
+        
+    def star(self,request):
+        self.starred = True
+        self.starrer = request.user
+        self.save()
+    
+    def __str__(self):
+        return self.post.title
+    
 class Comment(models.Model):
     post = models.ForeignKey(Post,related_name='comments',on_delete=models.CASCADE)
     author = models.CharField(max_length=200,default='Anonymous')

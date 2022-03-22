@@ -1,0 +1,95 @@
+{% extends 'base.html' %} {% load static %} {% block title %}
+<title>Blog</title>
+{% endblock title %} {% block nav %}
+<li class="nav-item">
+    <a class="nav-link" href="{% url 'index' %}">Home</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link text-warning" href="{% url 'post-list' %}">Blog</a>
+</li>
+{% if user.is_authenticated %}
+<li class="nav-item">
+    <a class="nav-link" href="{% url 'stories' %}">Stories</a>
+</li>
+{% endif %}
+<li class="nav-item">
+    <a class="nav-link" href="#contacts">Contact</a>
+</li>
+
+{% endblock nav %} {% block body %}
+
+<main>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container text-center">
+            <h1 class="display-4 text-warning">Search Posts</h1>
+            <p class="lead">
+                Enter post name or related keyword below.
+            </p>
+            <hr class="my-4" />
+
+            <p class="lead">
+               
+                <form class="form-inline" method="get" action="{%url 'search-post'%}">
+                <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search" aria-label="Search">
+                <br>
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search post</button>
+                </form>
+                <br>
+                
+            </p>
+            <div class="container text-left">
+                <span class="mt-4 text-info">Results</span>
+                <hr class="my-2" />
+            </div>
+        </div>
+       
+    </div>
+   {% for post in post_list %}
+     <div class="container">
+        <div class="jumbotron pl-3 my-3">
+            <div class="row px-3 mx-auto">
+                <div class="col-9">
+                    <a
+                        href="{{ post.author.get_absolute_url }}"
+                        class="text-light"
+                        style="text-decoration: none"
+                    >
+                        @{{ post.author }}</a
+                    >
+                    &nbsp; &middot; &nbsp;
+                    <span class="text-primary"
+                        >{{ post.publish_date }}</span
+                    >
+
+                    <p class="lead" style="font-weight: bolder">
+                        <br />
+                        <a
+                            href="{{  post.get_absolute_url  }}"
+                            class="text-warning img-fluid rounded-circle hd"
+                            style="text-decoration: none"
+                            >{{ post.title }}</a
+                        >
+                    </p>
+
+                    <p>{{ post.content|truncatewords:50 }}</p>
+                </div>
+
+                {% if post.image %}
+                <div
+                    class="col-3 justify-content-center mx-auto d-none d-lg-block"
+                >
+                    <img
+                        src="{{ post.image.url }}"
+                        class="img-fluid h-100 rounded-top"
+                        alt=""
+                        width="90%"
+                    />
+                </div>
+                {% endif %}
+            </div>
+            <hr class="my-2" />
+        </div>
+     </div>
+   {% endfor %}
+</main>
+{% endblock body %}
