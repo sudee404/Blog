@@ -1,3 +1,4 @@
+from curses import tigetflag
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -65,12 +66,19 @@ class PostListView(ListView):
         return context
 
     def get_queryset(self):
-        return Post.objects.filter(publish_date__lte=timezone.now()).order_by('publish_date')
+        return Post.objects.filter(publish_date__lte=timezone.now()).order_by('publish_date')[:20]
 
 
 class SearchListView(ListView):
     model = Post
     template_name = 'blog/search_list.html'
+    
+    def get_queryset(self):
+        posts = Post.objects.filter(publish_date__lte=timezone.now()).order_by('publish_date')
+        keyword = self.request.GET.get('search')
+        if keyword:
+            return posts.filter(title__icontains = keyword)[:10]
+        return posts[:10]
 
 
 class PostDetailView(DetailView):

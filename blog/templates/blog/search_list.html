@@ -44,6 +44,8 @@
         </div>
        
     </div>
+   
+   {% if post_list %}
    {% for post in post_list %}
      <div class="container">
         <div class="jumbotron pl-3 my-3">
@@ -91,5 +93,13 @@
         </div>
      </div>
    {% endfor %}
+   {% else %}
+   <div class="container text-center">
+       <span class="display-3 my-4">Not Found</span>
+       <div>No post has a name with the given keyword</div>
+   </div>
+       
+   {% endif %}
+       
 </main>
 {% endblock body %}
