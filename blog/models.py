@@ -69,7 +69,6 @@ class Team(models.Model):
 class Author(models.Model):
     user = models.OneToOneField('auth.User',on_delete=models.CASCADE)
     pic = models.ImageField(upload_to='pic',default='default.png',null=True, blank=True)
-   
     
     def __str__(self):
         return self.user.username
