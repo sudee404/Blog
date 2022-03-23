@@ -1,4 +1,3 @@
-from curses import tigetflag
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -25,17 +24,19 @@ def index(request):
 
 
 def signup(request):
-    context = {
-        'form': UserForm()
-    }
+    
     if request.method == 'POST':
         form = UserForm(request.POST)
 
         if form.is_valid():
             form.save(commit=True)
 
-            return redirect('login',)
+            return redirect('login')
 
+    context = {
+        'form': UserForm()
+    }
+    
     return render(request, 'sign_up.html', context=context)
 
 @login_required

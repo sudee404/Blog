@@ -1,4 +1,4 @@
-{% extends "base.html" %} {% block body %}
+{% extends "base.html" %} {% load socialaccount %}{% block body %}
 <div class="container">
     <div class="jumbotron jumbotron-fluid">
         <div class="container mx-auto justify-content-center text-center">
@@ -38,6 +38,8 @@
 				<input type="submit" class="btn btn-primary" value="Submit" />
 				<input type="hidden" name="next" value="{{ next }}" />
 			</form>
+			<br> 
+			<a type="button" class="btn btn-info" href="{% provider_login_url 'google' %}">Continue with Google</a>
 			
 			<br/>
 			{% if form.errors %}
