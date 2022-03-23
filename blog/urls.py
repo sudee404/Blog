@@ -15,4 +15,6 @@ urlpatterns = [
     path('post/<int:pk>/publish',views.publish_post,name='post-publish') ,
     path('my-stories/',views.stories,name='stories'),
     path('signup/',views.signup,name='signup'),
+    path('contact/',views.contact,name='contact'),
+    path('profile/',views.profile,name='profile'),
 ]

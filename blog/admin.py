@@ -22,8 +22,7 @@ class TeamAdmin(admin.ModelAdmin):
 class CommentAdmin(admin.ModelAdmin):
     list_display = ('author','created_at')
     
-@admin.register(Author)
-class AuthorAdmin(admin.ModelAdmin):
-    list_display = ('pic',)
     
+admin.site.register(Author)
+
 admin.site.register(PostInstance)

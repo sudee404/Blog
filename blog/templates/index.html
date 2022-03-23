@@ -11,9 +11,24 @@
 </li>
 {% endif %}
 <li class="nav-item">
-    <a class="nav-link" href="#contacts">Contact</a>
+    <a class="nav-link" href="{%url 'contact'%}">Contact</a>
 </li>
 {% endblock nav %} {% block body %}
+
+
+
+{% if created %}
+<div class="alert alert-secondary alert-dismissible fade show" role="alert">
+    <h1 class="text-center text-dark">Welcome {{created.user.username}}</h1>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+{% endif %}
+
+
+
+    
 <main>
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
@@ -56,7 +71,7 @@
                         <p>
                             <a
                                 class="btn btn-lg btn-primary btn-outline-warning"
-                                href="#"
+                                href="https://t.me/ectopu"
                                 role="button"
                                 >Join on Telegram</a
                             >
@@ -171,9 +186,12 @@
     <!-- Marketing messaging and featurettes
 ================================================== -->
     <!-- Wrap the rest of the page in another container to center all the content. -->
-
+        
     <div class="container marketing" id="about">
         <!-- Three columns of text below the carousel -->
+        
+        {% if members %}
+            
         <h1 class="text-success">
             Meet the Team
             <hr class="bg-success" />
@@ -181,7 +199,7 @@
         <br />
         <div class="row">
             {% for member in members %}
-            <div class="col-lg-4">
+            <div class="col-lg-6 text-center">
                 <img
                     src="{{ member.pic.url }}"
                     class="bd-placeholder-img rounded-circle"
@@ -264,7 +282,10 @@
                 </div>
             </div>
             {% endfor %}
+            
         </div>
+             
+        {% endif %}
         <br />
         <br />
         <div id="services">

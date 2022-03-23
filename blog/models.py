@@ -67,6 +67,10 @@ class Team(models.Model):
         return self.name
 
 class Author(models.Model):
-    user = models.ForeignKey('auth.User',on_delete=models.CASCADE,null=True,blank=True)
+    user = models.OneToOneField('auth.User',on_delete=models.CASCADE)
     pic = models.ImageField(upload_to='pic',default='default.png',null=True, blank=True)
+   
+    
+    def __str__(self):
+        return self.user.username
     

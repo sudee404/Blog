@@ -1,0 +1,38 @@
+{% extends 'base.html' %} {% load static %} {% block title %}
+<title>Contact</title>
+{% endblock title %} {% block nav %}
+<li class="nav-item">
+    <a class="nav-link" href="{% url 'index' %}">Home</a>
+</li>
+
+<li class="nav-item">
+    <a class="nav-link" href="{% url 'post-list' %}">Blog</a>
+</li>
+{% if user.is_authenticated %}
+<li class="nav-item">
+    <a class="nav-link" href="{% url 'stories' %}">Stories</a>
+</li>
+{% endif %}
+<li class="nav-item">
+    <a class="nav-link" href="#">Contact</a>
+</li>
+
+{% endblock nav %} 
+{% block body %}
+<br>
+<br>
+<div class="container">
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container text-center ">
+            <img src="{{author.pic.url}}" class="img-fluid rounded-circle" alt="" width="100" height="100">
+            <h3 class="display-3 text-primary">{{author.user.username}}</h3>
+            <p class="lead">
+                <a class="btn btn-info btn-lg" href="{%url 'stories'%}" role="button">My Posts</a>
+            </p>
+        </div>
+    </div>
+</div>
+{%endblock body%}
+{% block footer %}
+<footer id="contacts"class="container fixed-bottom">
+    {% endblock footer %} 
