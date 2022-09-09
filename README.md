@@ -13,9 +13,9 @@ At the moment all it does is have a blog and my portfolio
 
 # Build and Run
 
-Clone this project and run the following commands
-cd blog_site
-pip install -r requirements.txt
-python manage.py runserver
+Clone this project and run the following commands <br>
+cd blog_site <br>
+pip install -r requirements.txt<br>
+python manage.py runserver<br>
 
 Access the page <a href="http://127.0.0.1:8000/">here</a>
